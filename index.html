@@ -20,9 +20,15 @@
           </svg>
         </button>
         <div class="page-header__nbc">NBCU</div>
+        <div class="page-header__sharepoint">SharePoint</div>
       </div>
       <div class="page-header__center">
-        <input type="search" class="page-header__search" placeholder="Search..." />
+        <div class="page-header__search-wrap">
+          <svg class="page-header__search-icon" viewBox="0 0 24 24" fill="currentColor" width="14" height="14" aria-hidden="true">
+            <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16a6.471 6.471 0 0 0 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+          </svg>
+          <input type="search" class="page-header__search" placeholder="Search this site" />
+        </div>
       </div>
       <div class="page-header__right">
         <button class="page-header__user" aria-label="User profile" title="User profile">
@@ -35,48 +41,552 @@
 
     <main class="page-main">
       <div class="page-subheader" id="pageSubheader">
-        <img class="o-and-t-logo" src="o&tlogo.jpg" alt="O&T logo" />
+        <div class="page-subheader__brand">
+          <img class="o-and-t-logo" src="o&tlogo.jpg" alt="O&T logo" />
+          <div class="page-subheader__heading">
+            <h1 class="page-subheader__title">O&T Growth Engine</h1>
+            <nav class="page-subheader__tabs" aria-label="Site sections">
+              <a href="#" class="page-subheader__tab is-active">Home</a>
+
+              <div class="page-subheader__dropdown">
+                <button type="button" class="page-subheader__tab page-subheader__tab--dropdown" aria-expanded="false" aria-controls="subtabs-ops-tech">
+                  Ops &amp; Tech 101
+                  <svg class="page-subheader__caret" viewBox="0 0 24 24" fill="currentColor" width="12" height="12" aria-hidden="true">
+                    <path d="M7 10l5 5 5-5z"/>
+                  </svg>
+                </button>
+                <div class="page-subheader__subtabs" id="subtabs-ops-tech">
+                  <a href="#" class="page-subheader__subtab">Sub-Businesses</a>
+                  <a href="#" class="page-subheader__subtab">O&amp;T Leadership Principles</a>
+                  <a href="#" class="page-subheader__subtab">Media Tech Program</a>
+                </div>
+              </div>
+
+              <a href="#" class="page-subheader__tab">Onboarding</a>
+
+              <div class="page-subheader__dropdown">
+                <button type="button" class="page-subheader__tab page-subheader__tab--dropdown" aria-expanded="false" aria-controls="subtabs-career">
+                  Career Ownership
+                  <svg class="page-subheader__caret" viewBox="0 0 24 24" fill="currentColor" width="12" height="12" aria-hidden="true">
+                    <path d="M7 10l5 5 5-5z"/>
+                  </svg>
+                </button>
+                <div class="page-subheader__subtabs" id="subtabs-career">
+                  <a href="#" class="page-subheader__subtab">3 Steps to Career Ownership</a>
+                  <a href="#" class="page-subheader__subtab">Learning &amp; Development Calendar</a>
+                  <a href="#" class="page-subheader__subtab">NBCU Careers Pages</a>
+                  <a href="#" class="page-subheader__subtab">Learning &amp; Development Resources</a>
+                </div>
+              </div>
+
+              <a href="#" class="page-subheader__tab">Cameo</a>
+
+              <div class="page-subheader__dropdown">
+                <button type="button" class="page-subheader__tab page-subheader__tab--dropdown" aria-expanded="false" aria-controls="subtabs-feedback">
+                  Feedback &amp; Performance
+                  <svg class="page-subheader__caret" viewBox="0 0 24 24" fill="currentColor" width="12" height="12" aria-hidden="true">
+                    <path d="M7 10l5 5 5-5z"/>
+                  </svg>
+                </button>
+                <div class="page-subheader__subtabs" id="subtabs-feedback">
+                  <a href="#" class="page-subheader__subtab">Performance Management in O&amp;T</a>
+                  <a href="#" class="page-subheader__subtab">Goal Setting for Performance</a>
+                  <a href="#" class="page-subheader__subtab">Feedback in O&amp;T</a>
+                  <a href="#" class="page-subheader__subtab">Performance Feedback Tool</a>
+                  <a href="#" class="page-subheader__subtab">myFeedbackTool</a>
+                </div>
+              </div>
+
+              <a href="#" class="page-subheader__tab">Recognition</a>
+              <a href="#" class="page-subheader__tab">Getting Involved</a>
+
+              <div class="page-subheader__dropdown">
+                <button type="button" class="page-subheader__tab page-subheader__tab--dropdown" aria-expanded="false" aria-controls="subtabs-helpful">
+                  Helpful Links
+                  <svg class="page-subheader__caret" viewBox="0 0 24 24" fill="currentColor" width="12" height="12" aria-hidden="true">
+                    <path d="M7 10l5 5 5-5z"/>
+                  </svg>
+                </button>
+                <div class="page-subheader__subtabs" id="subtabs-helpful">
+                  <a href="#" class="page-subheader__subtab">HRConnection</a>
+                  <a href="#" class="page-subheader__subtab">HRConnection UK</a>
+                  <a href="#" class="page-subheader__subtab">Comcast NBCUniversal Listens</a>
+                  <a href="#" class="page-subheader__subtab">NBCUNow</a>
+                  <a href="#" class="page-subheader__subtab">Now Portal</a>
+                  <a href="#" class="page-subheader__subtab">Education Assistance Program</a>
+                  <a href="#" class="page-subheader__subtab">Study &amp; Training Policy UK</a>
+                  <a href="#" class="page-subheader__subtab">myWellbeing Hub</a>
+                  <a href="#" class="page-subheader__subtab">Mental Wellbeing Hub UK</a>
+                  <a href="#" class="page-subheader__subtab">Talent Lab On-Demand</a>
+                  <a href="#" class="page-subheader__subtab">Sub-Business Sites</a>
+                </div>
+              </div>
+
+              <a href="#" class="page-subheader__tab">Site Feedback</a>
+            </nav>
+          </div>
+        </div>
       </div>
-      <div class="welcome-message">Welcome Angela</div>
+      <div class="growth-section">
+        <div class="growth-section__header">
+          <span class="growth-section__bullet" aria-hidden="true"></span>
+          Growth Resources
+        </div>
+        <div class="growth-section__subtitle">Recommended</div>
+      </div>
       <div class="cards">
         <a class="card media-tech" href="https://nbcuni.sharepoint.com/sites/Media-Tech-Program/SitePages/Home.aspx" target="_blank" rel="noopener noreferrer">
-          <h1>Media Tech Program</h1>
-          <p>Learn more about the Media Tech Associate Program. Click here to access program information, connect with participants, and find support resources.</p>
+          <div class="card__image-wrap">
+            <img class="card__image" src="mta.png" alt="" />
+          </div>
+          <div class="card__body">
+            <h1>Media Tech Program</h1>
+          </div>
         </a>
       <a class="card cameo" href="https://nbcuni.sharepoint.com/sites/OTGrowthEngine/SitePages/Cameo.aspx" target="_blank" rel="noopener noreferrer">
-        <h1>Cameo</h1>
-        <p>Gain new experiences and build your network. Click here to connect with other teams looking for support in their work.</p>
+        <div class="card__image-wrap">
+          <img class="card__image" src="cameo.png" alt="" />
+        </div>
+        <div class="card__body">
+          <h1>Cameo</h1>
+        </div>
       </a>
       <a class="card learning-calendar" href="https://nbcuni.sharepoint.com/sites/OTGrowthEngine/SitePages/Learning-&-Development-Calendar.aspx" target="_blank" rel="noopener noreferrer">
-        <h1>Learning and Development Calendar</h1>
-        <p>Click here to discover training opportunities aligned to core growth competencies.</p>
+        <div class="card__image-wrap">
+          <img class="card__image" src="l&amp;d.jpg" alt="" />
+        </div>
+        <div class="card__body">
+          <h1>Learning and Development Calendar</h1>
+        </div>
+      </a>
+      <a class="card myfeedback" href="https://www.nbcunow.com/career-tools/myfeedback" target="_blank" rel="noopener noreferrer">
+        <div class="card__image-wrap">
+          <img class="card__image" src="feedback.avif" alt="" />
+        </div>
+        <div class="card__body">
+          <h1>myFeedback</h1>
+        </div>
       </a>
     </div>
+      <div class="events-communities-section">
+            <div class="growth-section events-communities-section__events-header">
+              <div class="growth-section__header">
+                <span class="growth-section__bullet" aria-hidden="true"></span>
+                Upcoming Events
+              </div>
+            </div>
+            <div class="growth-section events-communities-section__communities-header">
+              <div class="growth-section__header">
+                <span class="growth-section__bullet" aria-hidden="true"></span>
+                Communities
+              </div>
+            </div>
+      <div class="event-calendar-wrap events-communities-section__events-content">
+        <div class="event-calendar__header">
+          <h2 class="event-calendar__month">July 2026</h2>
+        </div>
+        <div class="event-calendar-body">
+        <aside class="event-calendar-legend" aria-label="Event card legend">
+          <div class="event-calendar-legend__item">
+            <span class="event-calendar-legend__swatch event-calendar-legend__swatch--purple" aria-hidden="true"></span>
+            <span class="event-calendar-legend__label">Recommend</span>
+          </div>
+          <div class="event-calendar-legend__item">
+            <span class="event-calendar-legend__swatch event-calendar-legend__swatch--blue" aria-hidden="true"></span>
+            <span class="event-calendar-legend__label">Useful</span>
+          </div>
+        </aside>
+      <div class="event-calendar" aria-label="July 2026 calendar">
+        <div class="event-calendar__weekdays" aria-hidden="true">
+          <span>Sun</span>
+          <span>Mon</span>
+          <span>Tue</span>
+          <span>Wed</span>
+          <span>Thu</span>
+          <span>Fri</span>
+          <span>Sat</span>
+        </div>
+        <div class="event-calendar__grid">
+          <div class="event-calendar__day event-calendar__day--empty"></div>
+          <div class="event-calendar__day event-calendar__day--empty"></div>
+          <div class="event-calendar__day event-calendar__day--empty"></div>
+          <div class="event-calendar__day">
+            <span class="event-calendar__date">1</span>
+          </div>
+          <div class="event-calendar__day event-calendar__day--has-event">
+            <span class="event-calendar__date">2</span>
+            <article class="event-card event-card--purple">
+              <h3 class="event-card__title">Upskill with Excel Series</h3>
+              <button type="button" class="event-card__rsvp">RSVP</button>
+            </article>
+          </div>
+          <div class="event-calendar__day">
+            <span class="event-calendar__date">3</span>
+          </div>
+          <div class="event-calendar__day">
+            <span class="event-calendar__date">4</span>
+          </div>
+          <div class="event-calendar__day">
+            <span class="event-calendar__date">5</span>
+          </div>
+          <div class="event-calendar__day event-calendar__day--has-event">
+            <span class="event-calendar__date">6</span>
+            <article class="event-card">
+              <h3 class="event-card__title">Leading Inclusive Meetings</h3>
+              <button type="button" class="event-card__rsvp">RSVP</button>
+            </article>
+          </div>
+          <div class="event-calendar__day">
+            <span class="event-calendar__date">7</span>
+          </div>
+          <div class="event-calendar__day">
+            <span class="event-calendar__date">8</span>
+          </div>
+          <div class="event-calendar__day event-calendar__day--has-event">
+            <span class="event-calendar__date">9</span>
+            <article class="event-card">
+              <h3 class="event-card__title">Lab Kit: Effective Pitching</h3>
+              <button type="button" class="event-card__rsvp">RSVP</button>
+            </article>
+          </div>
+          <div class="event-calendar__day">
+            <span class="event-calendar__date">10</span>
+          </div>
+          <div class="event-calendar__day">
+            <span class="event-calendar__date">11</span>
+          </div>
+          <div class="event-calendar__day">
+            <span class="event-calendar__date">12</span>
+          </div>
+          <div class="event-calendar__day">
+            <span class="event-calendar__date">13</span>
+          </div>
+          <div class="event-calendar__day event-calendar__day--has-event">
+            <span class="event-calendar__date">14</span>
+            <article class="event-card">
+              <h3 class="event-card__title">Performance Feedback</h3>
+              <button type="button" class="event-card__rsvp">RSVP</button>
+            </article>
+          </div>
+          <div class="event-calendar__day">
+            <span class="event-calendar__date">15</span>
+          </div>
+          <div class="event-calendar__day">
+            <span class="event-calendar__date">16</span>
+          </div>
+          <div class="event-calendar__day">
+            <span class="event-calendar__date">17</span>
+          </div>
+          <div class="event-calendar__day">
+            <span class="event-calendar__date">18</span>
+          </div>
+          <div class="event-calendar__day">
+            <span class="event-calendar__date">19</span>
+          </div>
+          <div class="event-calendar__day event-calendar__day--today">
+            <span class="event-calendar__date">20</span>
+          </div>
+          <div class="event-calendar__day">
+            <span class="event-calendar__date">21</span>
+          </div>
+          <div class="event-calendar__day event-calendar__day--has-event">
+            <span class="event-calendar__date">22</span>
+            <article class="event-card event-card--purple">
+              <h3 class="event-card__title">The Innovation Stage</h3>
+              <button type="button" class="event-card__rsvp">RSVP</button>
+            </article>
+          </div>
+          <div class="event-calendar__day">
+            <span class="event-calendar__date">23</span>
+          </div>
+          <div class="event-calendar__day event-calendar__day--has-event">
+            <span class="event-calendar__date">24</span>
+            <article class="event-card">
+              <h3 class="event-card__title">Rapid Ideation</h3>
+              <button type="button" class="event-card__rsvp">RSVP</button>
+            </article>
+          </div>
+          <div class="event-calendar__day">
+            <span class="event-calendar__date">25</span>
+          </div>
+          <div class="event-calendar__day">
+            <span class="event-calendar__date">26</span>
+          </div>
+          <div class="event-calendar__day">
+            <span class="event-calendar__date">27</span>
+          </div>
+          <div class="event-calendar__day">
+            <span class="event-calendar__date">28</span>
+          </div>
+          <div class="event-calendar__day">
+            <span class="event-calendar__date">29</span>
+          </div>
+          <div class="event-calendar__day event-calendar__day--has-event">
+            <span class="event-calendar__date">30</span>
+            <article class="event-card">
+              <h3 class="event-card__title">Lab Kit: Peer to Manager</h3>
+              <button type="button" class="event-card__rsvp">RSVP</button>
+            </article>
+          </div>
+          <div class="event-calendar__day">
+            <span class="event-calendar__date">31</span>
+          </div>
+        </div>
+      </div>
+      </div>
+      </div>
+        <div class="events-communities-layout__communities events-communities-section__communities-content">
+          <div class="community-cards">
+            <article class="community-card">
+              <div class="community-card__image-wrap">
+                <img class="community-card__image" src="ypn.jpeg" alt="" />
+              </div>
+              <div class="community-card__body">
+                <h3 class="community-card__title">YPN</h3>
+              </div>
+            </article>
+            <article class="community-card">
+              <div class="community-card__image-wrap">
+                <img class="community-card__image" src="techwomen.jpeg" alt="" />
+              </div>
+              <div class="community-card__body">
+                <h3 class="community-card__title">TECHWomen</h3>
+              </div>
+            </article>
+            <article class="community-card">
+              <div class="community-card__image-wrap">
+                <img class="community-card__image" src="talentlab.jpeg" alt="" />
+              </div>
+              <div class="community-card__body">
+                <h3 class="community-card__title">talentlab</h3>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
   </main>
   <script>
     const subheader = document.getElementById('pageSubheader');
     if (subheader) {
       const maxScroll = 180;
-      const maxHeight = 120;
-      const minHeight = 72;
       const maxWidth = 110;
       const minWidth = 56;
-      const maxFont = 3.5;
-      const minFont = 1.4;
+      const maxFont = 0.8;
+      const minFont = 0.75;
+      const maxTitleFont = 1.25;
+      const minTitleFont = 0.95;
+      const maxTabFont = 0.875;
+      const minTabFont = 0.75;
 
       const updateSubheader = () => {
         const progress = Math.min(window.scrollY / maxScroll, 1);
-        const height = maxHeight - (maxHeight - minHeight) * progress;
         const logoWidth = maxWidth - (maxWidth - minWidth) * progress;
         const fontSize = maxFont - (maxFont - minFont) * progress;
+        const titleSize = maxTitleFont - (maxTitleFont - minTitleFont) * progress;
+        const tabSize = maxTabFont - (maxTabFont - minTabFont) * progress;
 
-        subheader.style.setProperty('--subheader-height', `${height}px`);
         subheader.style.setProperty('--logo-width', `${logoWidth}px`);
-        subheader.style.setProperty('--welcome-size', `${fontSize}rem`);
+        subheader.style.setProperty('--growth-heading-size', `${fontSize}rem`);
+        subheader.style.setProperty('--title-size', `${titleSize}rem`);
+        subheader.style.setProperty('--tab-size', `${tabSize}rem`);
+        subheader.classList.toggle('is-scrolled', window.scrollY > 0);
       };
 
       updateSubheader();
       window.addEventListener('scroll', updateSubheader, { passive: true });
+    }
+
+    const setActiveTab = (tab) => {
+      document.querySelectorAll('.page-subheader__tab.is-active').forEach((activeTab) => {
+        activeTab.classList.remove('is-active');
+      });
+      tab.classList.add('is-active');
+    };
+
+    document.querySelectorAll('.page-subheader__tabs > .page-subheader__tab').forEach((tab) => {
+      tab.addEventListener('click', (event) => {
+        event.preventDefault();
+        setActiveTab(tab);
+      });
+    });
+
+    document.querySelectorAll('.page-subheader__dropdown').forEach((dropdown) => {
+      const toggle = dropdown.querySelector('.page-subheader__tab--dropdown');
+
+      const closeDropdown = () => {
+        dropdown.classList.remove('is-open');
+        toggle.setAttribute('aria-expanded', 'false');
+      };
+
+      const openDropdown = () => {
+        document.querySelectorAll('.page-subheader__dropdown.is-open').forEach((openDropdown) => {
+          if (openDropdown !== dropdown) {
+            openDropdown.classList.remove('is-open');
+            openDropdown.querySelector('.page-subheader__tab--dropdown').setAttribute('aria-expanded', 'false');
+          }
+        });
+        dropdown.classList.add('is-open');
+        toggle.setAttribute('aria-expanded', 'true');
+      };
+
+      toggle.addEventListener('click', (event) => {
+        event.stopPropagation();
+        setActiveTab(toggle);
+        if (dropdown.classList.contains('is-open')) {
+          closeDropdown();
+        } else {
+          openDropdown();
+        }
+      });
+
+      dropdown.querySelectorAll('.page-subheader__subtab').forEach((subtab) => {
+        subtab.addEventListener('click', (event) => {
+          event.preventDefault();
+          setActiveTab(toggle);
+        });
+      });
+    });
+
+    document.addEventListener('click', () => {
+      document.querySelectorAll('.page-subheader__dropdown.is-open').forEach((dropdown) => {
+        dropdown.classList.remove('is-open');
+        dropdown.querySelector('.page-subheader__tab--dropdown').setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        document.querySelectorAll('.page-subheader__dropdown.is-open').forEach((dropdown) => {
+          dropdown.classList.remove('is-open');
+          dropdown.querySelector('.page-subheader__tab--dropdown').setAttribute('aria-expanded', 'false');
+        });
+      }
+    });
+
+    const cardsContainer = document.querySelector('.cards');
+    const cards = cardsContainer ? Array.from(cardsContainer.querySelectorAll('.card')) : [];
+
+    const getCardFlexGrow = (index, hoveredIndex) => {
+      if (index === hoveredIndex) {
+        return 1.1;
+      }
+
+      if (index < hoveredIndex) {
+        const distance = hoveredIndex - index;
+        return Math.max(0.28, 0.55 - (distance - 1) * 0.1);
+      }
+
+      const distance = index - hoveredIndex;
+      return Math.max(0.38, 0.82 - distance * 0.18);
+    };
+
+    let activeHoveredIndex = -1;
+
+    const resetCards = () => {
+      activeHoveredIndex = -1;
+      cardsContainer.classList.remove('is-interacting');
+      cards.forEach((card) => {
+        card.classList.remove('is-hovered');
+        card.style.setProperty('--card-flex-grow', '1');
+      });
+    };
+
+    const updateCardWidths = (hoveredIndex) => {
+      if (hoveredIndex < 0 || hoveredIndex === activeHoveredIndex) {
+        return;
+      }
+
+      activeHoveredIndex = hoveredIndex;
+      cardsContainer.classList.add('is-interacting');
+      cards.forEach((card, index) => {
+        const flexGrow = getCardFlexGrow(index, hoveredIndex);
+        card.style.setProperty('--card-flex-grow', String(flexGrow));
+        card.classList.toggle('is-hovered', index === hoveredIndex);
+      });
+    };
+
+    if (cardsContainer && cards.length) {
+      cardsContainer.addEventListener('mousemove', (event) => {
+        const hoveredCard = event.target.closest('.card');
+        if (!hoveredCard) {
+          return;
+        }
+
+        updateCardWidths(cards.indexOf(hoveredCard));
+      });
+
+      cards.forEach((card, index) => {
+        card.addEventListener('mouseenter', () => {
+          updateCardWidths(index);
+        });
+      });
+
+      cardsContainer.addEventListener('mouseleave', resetCards);
+    }
+
+    const communityCardsContainer = document.querySelector('.community-cards');
+
+    const updateCommunityCardGradients = () => {
+      if (!communityCardsContainer) {
+        return;
+      }
+
+      const communityCards = Array.from(communityCardsContainer.querySelectorAll('.community-card'));
+      if (!communityCards.length) {
+        return;
+      }
+
+      const gap = Number.parseFloat(getComputedStyle(communityCardsContainer).rowGap) || 0;
+      const cardHeights = communityCards.map((card) => card.getBoundingClientRect().height);
+      const totalHeight = cardHeights.reduce((sum, height, index) => {
+        return sum + height + (index < communityCards.length - 1 ? gap : 0);
+      }, 0);
+
+      let offset = 0;
+      communityCards.forEach((card, index) => {
+        const body = card.querySelector('.community-card__body');
+        if (!body) {
+          return;
+        }
+
+        body.style.backgroundSize = `100% ${totalHeight}px`;
+        body.style.backgroundPosition = `0 ${-offset}px`;
+
+        offset += cardHeights[index] + (index < communityCards.length - 1 ? gap : 0);
+      });
+    };
+
+    if (communityCardsContainer) {
+      const communityCards = Array.from(communityCardsContainer.querySelectorAll('.community-card'));
+
+      const resetCommunityCards = () => {
+        communityCardsContainer.classList.remove('is-interacting');
+        communityCards.forEach((card) => {
+          card.classList.remove('is-hovered');
+        });
+      };
+
+      communityCards.forEach((card) => {
+        card.addEventListener('mouseenter', () => {
+          communityCardsContainer.classList.add('is-interacting');
+          communityCards.forEach((item) => {
+            item.classList.toggle('is-hovered', item === card);
+          });
+        });
+      });
+
+      communityCardsContainer.addEventListener('mouseleave', resetCommunityCards);
+
+      updateCommunityCardGradients();
+      window.addEventListener('resize', updateCommunityCardGradients, { passive: true });
+
+      if (typeof ResizeObserver !== 'undefined') {
+        const communityResizeObserver = new ResizeObserver(updateCommunityCardGradients);
+        communityResizeObserver.observe(communityCardsContainer);
+        communityCards.forEach((card) => {
+          communityResizeObserver.observe(card);
+        });
+      }
     }
   </script>
 </body>
