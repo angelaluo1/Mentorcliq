@@ -1,6 +1,6 @@
 # Mentorcliq
 
-A blank HTML/CSS starter page.
+A HTML/CSS landing page providing a personalized version of the O&T Growth Engine. 
 
 ## Run locally
 
