@@ -123,15 +123,6 @@
               </div>
 
               <a href="#" class="page-subheader__tab">Site Feedback</a>
-
-              <div class="page-subheader__dropdown page-subheader__dropdown--overflow">
-                <button type="button" class="page-subheader__tab page-subheader__tab--overflow" aria-expanded="false" aria-controls="subtabs-overflow" aria-label="More pages">
-                  <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16" aria-hidden="true">
-                    <circle cx="5" cy="12" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="19" cy="12" r="1.8"/>
-                  </svg>
-                </button>
-                <div class="page-subheader__subtabs page-subheader__overflow-menu" id="subtabs-overflow"></div>
-              </div>
             </nav>
           </div>
         </div>
@@ -207,7 +198,7 @@
             <span class="event-calendar-legend__label">Useful</span>
           </div>
         </aside>
-      <div class="event-calendar" aria-label="July 2026 calendar">
+      <div class="event-calendar" aria-label="July 2026 calendar" data-year="2026" data-month="7">
         <div class="event-calendar__weekdays" aria-hidden="true">
           <span>Sun</span>
           <span>Mon</span>
@@ -294,7 +285,7 @@
           <div class="event-calendar__day">
             <span class="event-calendar__date">19</span>
           </div>
-          <div class="event-calendar__day event-calendar__day--today">
+          <div class="event-calendar__day">
             <span class="event-calendar__date">20</span>
           </div>
           <div class="event-calendar__day">
@@ -375,8 +366,57 @@
           </div>
         </div>
       </div>
+
+      <div class="growth-section frequent-links-section">
+        <h2 class="frequent-links-section__title">Frequent Links</h2>
+        <div class="frequent-links">
+          <a href="https://nbcuni.sharepoint.com/sites/talentdevelopment/SitePages/LinkedIn%20Learning%20Version%202.aspx" class="frequent-link-card" target="_blank" rel="noopener noreferrer">
+            <span class="frequent-link-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.062 2.062 0 0 1 2.063-2.063 2.062 2.062 0 0 1 2.063 2.063 2.062 2.062 0 0 1-2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+              </svg>
+            </span>
+            <span class="frequent-link-card__label">LinkedIn Learning</span>
+          </a>
+          <a href="https://nbcuni.sharepoint.com/sites/talentdevelopment" class="frequent-link-card" target="_blank" rel="noopener noreferrer">
+            <span class="frequent-link-card__label">Talent Lab Now</span>
+          </a>
+          <a href="https://www.nbcunow.com/benefits-discounts/education-assistance" class="frequent-link-card" target="_blank" rel="noopener noreferrer">
+            <span class="frequent-link-card__label">Education Assistance Program</span>
+          </a>
+        </div>
+      </div>
   </main>
   <script>
+    const markCalendarToday = () => {
+      const calendar = document.querySelector('.event-calendar');
+      if (!calendar) {
+        return;
+      }
+
+      const year = Number(calendar.dataset.year);
+      const month = Number(calendar.dataset.month);
+      const today = new Date();
+
+      calendar.querySelectorAll('.event-calendar__day--today').forEach((day) => {
+        day.classList.remove('event-calendar__day--today');
+      });
+
+      if (!year || !month || today.getFullYear() !== year || today.getMonth() + 1 !== month) {
+        return;
+      }
+
+      const todayDate = today.getDate();
+      calendar.querySelectorAll('.event-calendar__day:not(.event-calendar__day--empty)').forEach((day) => {
+        const dateEl = day.querySelector('.event-calendar__date');
+        if (dateEl && Number.parseInt(dateEl.textContent, 10) === todayDate) {
+          day.classList.add('event-calendar__day--today');
+        }
+      });
+    };
+
+    markCalendarToday();
+
     const subheader = document.getElementById('pageSubheader');
     let updateSubheader = () => {};
 
@@ -420,171 +460,7 @@
       };
     }
 
-    const tabsNav = document.querySelector('.page-subheader__tabs');
-    const overflowDropdown = document.querySelector('.page-subheader__dropdown--overflow');
-    const overflowMenu = document.getElementById('subtabs-overflow');
-
-    const getVisibleTabItems = () => {
-      if (!tabsNav || !overflowDropdown) {
-        return [];
-      }
-
-      return Array.from(tabsNav.children).filter((child) => child !== overflowDropdown);
-    };
-
-    const getTabGap = () => {
-      if (!tabsNav) {
-        return 0;
-      }
-
-      const styles = getComputedStyle(tabsNav);
-      return Number.parseFloat(styles.columnGap) || Number.parseFloat(styles.gap) || 0;
-    };
-
-    const measureTabItemsWidth = (items) => {
-      const gap = getTabGap();
-      return items.reduce((total, item, index) => {
-        return total + item.getBoundingClientRect().width + (index > 0 ? gap : 0);
-      }, 0);
-    };
-
-    const getOverflowButtonWidth = () => {
-      if (!overflowDropdown) {
-        return 0;
-      }
-
-      overflowDropdown.classList.add('is-overflow-visible');
-      overflowDropdown.style.visibility = 'hidden';
-      const width = overflowDropdown.getBoundingClientRect().width;
-      overflowDropdown.classList.remove('is-overflow-visible');
-      overflowDropdown.style.visibility = '';
-      return width;
-    };
-
-    const restoreOverflowTabs = () => {
-      if (!tabsNav || !overflowMenu || !overflowDropdown) {
-        return;
-      }
-
-      Array.from(overflowMenu.children).forEach((item) => {
-        tabsNav.insertBefore(item, overflowDropdown);
-      });
-      overflowDropdown.classList.remove('is-overflow-visible', 'is-open');
-      const overflowToggle = overflowDropdown.querySelector('.page-subheader__tab--overflow');
-      if (overflowToggle) {
-        overflowToggle.setAttribute('aria-expanded', 'false');
-      }
-    };
-
-    const prioritizeActiveTab = () => {
-      if (!tabsNav || !overflowMenu || !overflowDropdown) {
-        return;
-      }
-
-      const activeTab = document.querySelector('.page-subheader__tab.is-active');
-      if (!activeTab) {
-        return;
-      }
-
-      const activeItem = activeTab.closest('.page-subheader__dropdown:not(.page-subheader__dropdown--overflow)') || activeTab;
-      if (!overflowMenu.contains(activeItem)) {
-        return;
-      }
-
-      const visibleItems = getVisibleTabItems();
-      const lastVisible = visibleItems[visibleItems.length - 1];
-      if (!lastVisible || lastVisible === activeItem) {
-        return;
-      }
-
-      tabsNav.insertBefore(activeItem, overflowDropdown);
-      overflowMenu.appendChild(lastVisible);
-    };
-
-    const layoutOverflowTabs = () => {
-      if (!tabsNav || !overflowMenu || !overflowDropdown) {
-        return;
-      }
-
-      restoreOverflowTabs();
-
-      const availableWidth = tabsNav.clientWidth;
-      if (!availableWidth) {
-        return;
-      }
-
-      let items = getVisibleTabItems();
-
-      while (items.length > 1 && measureTabItemsWidth(items) > availableWidth) {
-        const lastItem = items[items.length - 1];
-        overflowMenu.insertBefore(lastItem, overflowMenu.firstChild);
-        items = getVisibleTabItems();
-      }
-
-      if (overflowMenu.children.length > 0) {
-        const overflowButtonWidth = getOverflowButtonWidth();
-        overflowDropdown.classList.add('is-overflow-visible');
-        items = getVisibleTabItems();
-
-        while (items.length > 0 && measureTabItemsWidth(items) + getTabGap() + overflowButtonWidth > availableWidth) {
-          const lastItem = items[items.length - 1];
-          overflowMenu.insertBefore(lastItem, overflowMenu.firstChild);
-          items = getVisibleTabItems();
-        }
-
-        prioritizeActiveTab();
-        items = getVisibleTabItems();
-
-        while (items.length > 0 && measureTabItemsWidth(items) + getTabGap() + overflowButtonWidth > availableWidth) {
-          const lastItem = items[items.length - 1];
-          overflowMenu.insertBefore(lastItem, overflowMenu.firstChild);
-          items = getVisibleTabItems();
-        }
-      }
-
-      if (overflowMenu.children.length === 0) {
-        overflowDropdown.classList.remove('is-overflow-visible', 'is-open');
-        const overflowToggle = overflowDropdown.querySelector('.page-subheader__tab--overflow');
-        if (overflowToggle) {
-          overflowToggle.setAttribute('aria-expanded', 'false');
-        }
-      } else {
-        overflowDropdown.classList.add('is-overflow-visible');
-      }
-    };
-
-    if (tabsNav && overflowDropdown && overflowMenu) {
-      const runSubheaderUpdate = () => {
-        updateSubheader();
-        layoutOverflowTabs();
-      };
-
-      const scheduleOverflowLayout = () => {
-        requestAnimationFrame(() => {
-          layoutOverflowTabs();
-        });
-      };
-
-      runSubheaderUpdate();
-      window.addEventListener('scroll', runSubheaderUpdate, { passive: true });
-      window.addEventListener('resize', runSubheaderUpdate, { passive: true });
-
-      if (document.fonts && document.fonts.ready) {
-        document.fonts.ready.then(scheduleOverflowLayout);
-      }
-
-      if (typeof ResizeObserver !== 'undefined') {
-        const tabsResizeObserver = new ResizeObserver(scheduleOverflowLayout);
-        tabsResizeObserver.observe(tabsNav);
-        const tabsHeading = document.querySelector('.page-subheader__heading');
-        if (tabsHeading) {
-          tabsResizeObserver.observe(tabsHeading);
-        }
-        if (subheader) {
-          tabsResizeObserver.observe(subheader);
-        }
-      }
-    } else if (subheader) {
+    if (subheader) {
       updateSubheader();
       window.addEventListener('scroll', updateSubheader, { passive: true });
       window.addEventListener('resize', updateSubheader, { passive: true });
@@ -595,28 +471,17 @@
         activeTab.classList.remove('is-active');
       });
       tab.classList.add('is-active');
-      layoutOverflowTabs();
     };
 
-    document.querySelectorAll('.page-subheader__tabs > .page-subheader__tab:not(.page-subheader__tab--overflow)').forEach((tab) => {
+    document.querySelectorAll('.page-subheader__tabs > .page-subheader__tab').forEach((tab) => {
       tab.addEventListener('click', (event) => {
         event.preventDefault();
         setActiveTab(tab);
       });
     });
 
-    if (overflowMenu) {
-      overflowMenu.addEventListener('click', (event) => {
-        const tab = event.target.closest('.page-subheader__tab:not(.page-subheader__tab--dropdown)');
-        if (tab) {
-          event.preventDefault();
-          setActiveTab(tab);
-        }
-      });
-    }
-
     document.querySelectorAll('.page-subheader__dropdown').forEach((dropdown) => {
-      const toggle = dropdown.querySelector('.page-subheader__tab--dropdown, .page-subheader__tab--overflow');
+      const toggle = dropdown.querySelector('.page-subheader__tab--dropdown');
       if (!toggle) {
         return;
       }
@@ -630,7 +495,7 @@
         document.querySelectorAll('.page-subheader__dropdown.is-open').forEach((openDropdown) => {
           if (openDropdown !== dropdown) {
             openDropdown.classList.remove('is-open');
-            const openToggle = openDropdown.querySelector('.page-subheader__tab--dropdown, .page-subheader__tab--overflow');
+            const openToggle = openDropdown.querySelector('.page-subheader__tab--dropdown');
             if (openToggle) {
               openToggle.setAttribute('aria-expanded', 'false');
             }
@@ -643,9 +508,7 @@
       toggle.addEventListener('click', (event) => {
         event.preventDefault();
         event.stopPropagation();
-        if (!dropdown.classList.contains('page-subheader__dropdown--overflow')) {
-          setActiveTab(toggle);
-        }
+        setActiveTab(toggle);
         if (dropdown.classList.contains('is-open')) {
           closeDropdown();
         } else {
@@ -668,7 +531,7 @@
     document.addEventListener('click', () => {
       document.querySelectorAll('.page-subheader__dropdown.is-open').forEach((dropdown) => {
         dropdown.classList.remove('is-open');
-        const toggle = dropdown.querySelector('.page-subheader__tab--dropdown, .page-subheader__tab--overflow');
+        const toggle = dropdown.querySelector('.page-subheader__tab--dropdown');
         if (toggle) {
           toggle.setAttribute('aria-expanded', 'false');
         }
@@ -679,7 +542,7 @@
       if (event.key === 'Escape') {
         document.querySelectorAll('.page-subheader__dropdown.is-open').forEach((dropdown) => {
           dropdown.classList.remove('is-open');
-          const toggle = dropdown.querySelector('.page-subheader__tab--dropdown, .page-subheader__tab--overflow');
+          const toggle = dropdown.querySelector('.page-subheader__tab--dropdown');
           if (toggle) {
             toggle.setAttribute('aria-expanded', 'false');
           }
@@ -752,39 +615,6 @@
 
     const communityCardsContainer = document.querySelector('.community-cards');
 
-    const updateCommunityCardGradients = () => {
-      if (!communityCardsContainer) {
-        return;
-      }
-
-      const communityCards = Array.from(communityCardsContainer.querySelectorAll('.community-card'));
-      if (!communityCards.length) {
-        return;
-      }
-
-      const gapStyles = getComputedStyle(communityCardsContainer);
-      const gap = Number.parseFloat(gapStyles.rowGap)
-        || Number.parseFloat(gapStyles.gap)
-        || 8;
-      const cardHeights = communityCards.map((card) => card.getBoundingClientRect().height);
-      const totalHeight = cardHeights.reduce((sum, height, index) => {
-        return sum + height + (index < communityCards.length - 1 ? gap : 0);
-      }, 0);
-
-      let offset = 0;
-      communityCards.forEach((card, index) => {
-        const body = card.querySelector('.community-card__body');
-        if (!body) {
-          return;
-        }
-
-        body.style.backgroundSize = `100% ${totalHeight}px`;
-        body.style.backgroundPosition = `0 ${-offset}px`;
-
-        offset += cardHeights[index] + (index < communityCards.length - 1 ? gap : 0);
-      });
-    };
-
     if (communityCardsContainer) {
       const communityCards = Array.from(communityCardsContainer.querySelectorAll('.community-card'));
 
@@ -801,24 +631,10 @@
           communityCards.forEach((item) => {
             item.classList.toggle('is-hovered', item === card);
           });
-          requestAnimationFrame(() => {
-            requestAnimationFrame(updateCommunityCardGradients);
-          });
         });
       });
 
       communityCardsContainer.addEventListener('mouseleave', resetCommunityCards);
-
-      updateCommunityCardGradients();
-      window.addEventListener('resize', updateCommunityCardGradients, { passive: true });
-
-      if (typeof ResizeObserver !== 'undefined') {
-        const communityResizeObserver = new ResizeObserver(updateCommunityCardGradients);
-        communityResizeObserver.observe(communityCardsContainer);
-        communityCards.forEach((card) => {
-          communityResizeObserver.observe(card);
-        });
-      }
     }
   </script>
 </body>
