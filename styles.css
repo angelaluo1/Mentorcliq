@@ -4,6 +4,7 @@ html, body {
   background: #ffffff;
   color: #000000;
   font-family: "DM Sans", "Inter", "Segoe UI", system-ui, sans-serif;
+  overflow-x: clip;
 }
 
 body {
@@ -144,7 +145,7 @@ body {
 }
 
 .page-main {
-  padding: calc(42px + 0.75rem) 1rem 1.5rem;
+  padding: 0 1rem 1.5rem;
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -160,8 +161,8 @@ body {
   align-items: flex-start;
   justify-content: flex-start;
   width: 100%;
-  padding: 0.5rem 1rem;
-  margin: 0 0 1.5rem 0;
+  margin: 42px 0 1.5rem;
+  padding: 0.5rem 1.5rem;
   box-sizing: border-box;
   background: #ffffff;
   border-bottom: 1px solid #e5e7eb;
@@ -171,7 +172,7 @@ body {
 
 .page-subheader.is-scrolled {
   align-items: center;
-  padding: 0.35rem 1rem;
+  padding: 0.35rem 1.5rem;
 }
 
 .page-subheader__brand {
@@ -180,6 +181,7 @@ body {
   gap: 1rem;
   width: 100%;
   min-width: 0;
+  overflow: hidden;
 }
 
 .page-subheader__heading {
@@ -188,6 +190,9 @@ body {
   gap: 0.5rem;
   min-width: 0;
   flex: 1;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
   transition: flex-direction 0.2s ease, gap 0.2s ease;
 }
 
@@ -203,15 +208,9 @@ body {
 
 .page-subheader.is-scrolled .page-subheader__tabs {
   flex-wrap: nowrap;
-  overflow-x: auto;
+  overflow: hidden;
   flex: 1;
   min-width: 0;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-
-.page-subheader.is-scrolled .page-subheader__tabs::-webkit-scrollbar {
-  display: none;
 }
 
 .o-and-t-logo {
@@ -238,11 +237,77 @@ body {
 
 .page-subheader__tabs {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
   gap: 0.25rem 0.125rem;
   margin: 0;
   padding: 0;
+  min-width: 0;
+  flex: 1;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.page-subheader__dropdown--overflow {
+  display: none;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.page-subheader__dropdown--overflow.is-overflow-visible {
+  display: inline-flex;
+}
+
+.page-subheader__dropdown--overflow.is-open .page-subheader__overflow-menu {
+  display: flex;
+  flex-direction: column;
+}
+
+.page-subheader__tab--overflow {
+  justify-content: center;
+  min-width: 2rem;
+  padding: 0.35rem 0.55rem;
+}
+
+.page-subheader__overflow-menu {
+  right: 0;
+  left: auto;
+  min-width: 220px;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+.page-subheader__overflow-menu > .page-subheader__tab,
+.page-subheader__overflow-menu > .page-subheader__dropdown {
+  display: block;
+  width: 100%;
+}
+
+.page-subheader__overflow-menu > .page-subheader__tab {
+  border-radius: 0;
+  border-bottom: none;
+}
+
+.page-subheader__overflow-menu .page-subheader__tab--dropdown {
+  width: 100%;
+  justify-content: space-between;
+  border-radius: 0;
+}
+
+.page-subheader__overflow-menu .page-subheader__dropdown.is-open .page-subheader__subtabs {
+  position: static;
+  display: flex;
+  box-shadow: none;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  min-width: 0;
+  background: #f8fafc;
+}
+
+.page-subheader__overflow-menu .page-subheader__subtab {
+  padding-left: 1.5rem;
 }
 
 .page-subheader__tab {
@@ -417,6 +482,29 @@ body {
   min-width: 0;
   min-height: 0;
   align-self: stretch;
+  height: 100%;
+}
+
+@supports not (display: grid) {
+  .events-communities-section {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 0.75rem 2.5rem;
+  }
+
+  .events-communities-section__events-header,
+  .events-communities-section__events-content,
+  .events-communities-section__communities-header,
+  .events-communities-section__communities-content {
+    width: 100%;
+  }
+
+  .events-communities-section__communities-header,
+  .events-communities-section__communities-content {
+    flex: 1 1 18rem;
+    min-width: 0;
+  }
 }
 
 .events-communities-layout__communities {
@@ -443,8 +531,8 @@ body {
   flex-direction: row;
   align-items: stretch;
   width: 100%;
-  flex: 1 1 0;
-  min-height: 0;
+  flex: 1 1 auto;
+  min-height: 4.5rem;
   border-radius: 20px;
   background: #ffffff;
   border: 1px solid rgba(148, 163, 184, 0.12);
@@ -454,19 +542,19 @@ body {
   position: relative;
   transform-origin: center center;
   transition:
-    flex 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    flex-grow 0.6s cubic-bezier(0.22, 1, 0.36, 1),
     opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
     box-shadow 0.3s ease,
     transform 0.3s ease;
 }
 
 .community-cards.is-interacting .community-card:not(.is-hovered) {
-  flex: 0.72 1 0;
+  flex-grow: 0.72;
   opacity: 0.88;
 }
 
 .community-card.is-hovered {
-  flex: 1.45 1 0;
+  flex-grow: 1.45;
   z-index: 2;
   opacity: 1;
   box-shadow: 0 14px 32px rgba(15, 23, 42, 0.14);
@@ -488,7 +576,10 @@ body {
 
 .community-card__image {
   position: absolute;
-  inset: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   display: block;
   width: 100%;
   height: 100%;
@@ -723,13 +814,21 @@ body {
   initial-value: 1;
 }
 
+@supports not (background: linear-gradient(red, blue)) {
+  .community-card__body {
+    background-color: #eef7ff;
+    background-image: none;
+  }
+}
+
 .cards {
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 0.4rem;
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
   padding: 0.75rem 0.5rem 1.5rem;
   box-sizing: border-box;
   overflow: visible;
@@ -740,8 +839,9 @@ body {
   flex-direction: column;
   justify-content: flex-end;
   --card-flex-grow: 1;
-  flex: var(--card-flex-grow) 1 0;
-  width: 0;
+  flex-grow: var(--card-flex-grow);
+  flex-shrink: 1;
+  flex-basis: 0%;
   min-width: 0;
   max-width: none;
   height: 12rem;
@@ -757,11 +857,23 @@ body {
   cursor: pointer;
   transform-origin: center center;
   transition:
-    --card-flex-grow 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    flex-grow 0.6s cubic-bezier(0.22, 1, 0.36, 1),
     height 0.6s cubic-bezier(0.22, 1, 0.36, 1),
     min-height 0.6s cubic-bezier(0.22, 1, 0.36, 1),
     opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
     box-shadow 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@supports (background: linear-gradient(red, blue)) {
+  .card {
+    transition:
+      --card-flex-grow 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+      flex-grow 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+      height 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+      min-height 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
 }
 
 .cards.is-interacting .card:not(.is-hovered) {
@@ -835,7 +947,10 @@ body {
 .card.learning-calendar .card__image,
 .card.myfeedback .card__image {
   position: absolute;
-  inset: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   display: block;
   width: 100%;
   height: 100%;
