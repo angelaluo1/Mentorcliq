@@ -8,8 +8,10 @@ html, body {
 }
 
 :root {
-  --page-max-width: 1280px;
-  --page-gutter: 1.5rem;
+  --page-gutter: clamp(1rem, 2.5vw, 2rem);
+  --card-height: clamp(12rem, 10vw + 4rem, 22rem);
+  --card-height-shrunk: clamp(10.5rem, 8.5vw + 3.5rem, 18rem);
+  --card-height-hovered: clamp(15rem, 13vw + 5rem, 28rem);
 }
 
 body {
@@ -151,8 +153,6 @@ body {
 
 .page-main {
   width: 100%;
-  max-width: var(--page-max-width);
-  margin: 0 auto;
   padding: 0 var(--page-gutter) 2rem;
   display: flex;
   flex-direction: column;
@@ -187,7 +187,6 @@ body {
   align-items: center;
   gap: 1rem;
   width: 100%;
-  max-width: var(--page-max-width);
   min-width: 0;
   overflow: hidden;
 }
@@ -446,12 +445,11 @@ body {
 .events-communities-section {
   display: grid;
   grid-template-columns: minmax(0, 1.2fr) minmax(260px, 0.8fr);
-  column-gap: 2.5rem;
+  column-gap: clamp(1.5rem, 3vw, 3rem);
   row-gap: 0.75rem;
   align-items: stretch;
   width: 100%;
-  max-width: var(--page-max-width);
-  margin: 1rem auto 2rem;
+  margin: 1rem 0 2rem;
   padding: 0;
   box-sizing: border-box;
 }
@@ -542,7 +540,7 @@ body {
   align-items: stretch;
   width: 100%;
   flex: 1 1 auto;
-  min-height: 4.5rem;
+  min-height: clamp(4.5rem, 5vw + 2rem, 9rem);
   border-radius: 20px;
   background: #ffffff;
   border: 1px solid rgba(148, 163, 184, 0.12);
@@ -630,7 +628,7 @@ body {
   display: flex;
   align-items: flex-start;
   gap: 1rem;
-  max-width: 52rem;
+  width: 100%;
 }
 
 .event-calendar-legend {
@@ -717,7 +715,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 0.28rem;
-  min-height: 3.5rem;
+  min-height: clamp(3.5rem, 3vw + 1.5rem, 6rem);
   padding: 0.35rem;
   border: 1px solid rgba(148, 163, 184, 0.14);
   border-radius: 10px;
@@ -742,7 +740,7 @@ body {
 }
 
 .event-calendar__day--has-event {
-  min-height: 6rem;
+  min-height: clamp(6rem, 6vw + 2.5rem, 11rem);
 }
 
 .event-calendar__date {
@@ -836,10 +834,8 @@ body {
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
-  gap: 0.65rem;
+  gap: clamp(0.65rem, 1.2vw, 1.25rem);
   width: 100%;
-  max-width: var(--page-max-width);
-  margin: 0 auto;
   padding: 0.75rem 0 1.75rem;
   box-sizing: border-box;
   overflow: visible;
@@ -854,9 +850,8 @@ body {
   flex-shrink: 1;
   flex-basis: 0%;
   min-width: 0;
-  max-width: min(100%, 18rem);
-  height: 12rem;
-  min-height: 12rem;
+  height: var(--card-height);
+  min-height: var(--card-height);
   box-sizing: border-box;
   padding: clamp(1.5rem, 2.2vw, 2.25rem);
   border-radius: 24px;
@@ -888,14 +883,14 @@ body {
 }
 
 .cards.is-interacting .card:not(.is-hovered) {
-  height: 10.5rem;
-  min-height: 10.5rem;
+  height: var(--card-height-shrunk);
+  min-height: var(--card-height-shrunk);
   opacity: 0.9;
 }
 
 .card.is-hovered {
-  height: 15rem;
-  min-height: 15rem;
+  height: var(--card-height-hovered);
+  min-height: var(--card-height-hovered);
   opacity: 1;
   box-shadow: 0 12px 28px rgba(15, 23, 42, 0.1);
   z-index: 2;
@@ -1013,83 +1008,3 @@ body {
   transition: font-size 0.22s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
-@media (min-width: 1100px) {
-  .growth-section__subtitle {
-    margin-bottom: 0.25rem;
-  }
-
-  .cards {
-    justify-content: center;
-    gap: 1rem;
-    padding-bottom: 2.25rem;
-  }
-
-  .card {
-    max-width: 17.5rem;
-    height: 13.5rem;
-    min-height: 13.5rem;
-  }
-
-  .cards.is-interacting .card:not(.is-hovered) {
-    height: 12rem;
-    min-height: 12rem;
-  }
-
-  .card.is-hovered {
-    height: 16.5rem;
-    min-height: 16.5rem;
-  }
-
-  .events-communities-section {
-    grid-template-columns: minmax(0, 42rem) minmax(280px, 22rem);
-    column-gap: 3rem;
-    margin-top: 1.5rem;
-    margin-bottom: 2.5rem;
-  }
-
-  .event-calendar-body {
-    max-width: 100%;
-  }
-
-  .event-calendar__day {
-    min-height: 4rem;
-  }
-
-  .event-calendar__day--has-event {
-    min-height: 6.75rem;
-  }
-
-  .community-card {
-    min-height: 5.75rem;
-  }
-
-  .community-card__image-wrap {
-    flex-basis: 68%;
-  }
-
-  .community-card__body {
-    max-width: 32%;
-  }
-}
-
-@media (min-width: 1440px) {
-  :root {
-    --page-max-width: 1360px;
-  }
-
-  .card {
-    max-width: 18.5rem;
-    height: 14rem;
-    min-height: 14rem;
-  }
-
-  .cards.is-interacting .card:not(.is-hovered) {
-    height: 12.5rem;
-    min-height: 12.5rem;
-  }
-
-  .card.is-hovered {
-    height: 17rem;
-    min-height: 17rem;
-  }
-}
