@@ -381,7 +381,14 @@
     let updateSubheader = () => {};
 
     const getTypeScale = () => {
-      const scale = 0.85 + (window.innerWidth * 0.00028) + (window.innerHeight * 0.00015);
+      const largeScreenMin = 1800;
+      if (window.innerWidth < largeScreenMin) {
+        return 1;
+      }
+
+      const scale = 1
+        + ((window.innerWidth - largeScreenMin) * 0.0005)
+        + (Math.max(0, window.innerHeight - 900) * 0.0002);
       return Math.min(1.8, Math.max(1, scale));
     };
 
