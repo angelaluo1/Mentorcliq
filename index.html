@@ -380,6 +380,11 @@
     const subheader = document.getElementById('pageSubheader');
     let updateSubheader = () => {};
 
+    const getTypeScale = () => {
+      const scale = 0.85 + (window.innerWidth * 0.00028) + (window.innerHeight * 0.00015);
+      return Math.min(1.8, Math.max(1, scale));
+    };
+
     if (subheader) {
       const maxScroll = 180;
       const maxWidth = 110;
@@ -392,16 +397,18 @@
       const minTabFont = 0.75;
 
       updateSubheader = () => {
+        const scale = getTypeScale();
         const progress = Math.min(window.scrollY / maxScroll, 1);
-        const logoWidth = maxWidth - (maxWidth - minWidth) * progress;
-        const fontSize = maxFont - (maxFont - minFont) * progress;
-        const titleSize = maxTitleFont - (maxTitleFont - minTitleFont) * progress;
-        const tabSize = maxTabFont - (maxTabFont - minTabFont) * progress;
+        const logoWidth = (maxWidth - (maxWidth - minWidth) * progress) * scale;
+        const fontSize = (maxFont - (maxFont - minFont) * progress) * scale;
+        const titleSize = (maxTitleFont - (maxTitleFont - minTitleFont) * progress) * scale;
+        const tabSize = (maxTabFont - (maxTabFont - minTabFont) * progress) * scale;
+        const root = document.documentElement;
 
-        subheader.style.setProperty('--logo-width', `${logoWidth}px`);
-        subheader.style.setProperty('--growth-heading-size', `${fontSize}rem`);
-        subheader.style.setProperty('--title-size', `${titleSize}rem`);
-        subheader.style.setProperty('--tab-size', `${tabSize}rem`);
+        root.style.setProperty('--logo-width', `${logoWidth}px`);
+        root.style.setProperty('--growth-heading-size', `${fontSize}rem`);
+        root.style.setProperty('--title-size', `${titleSize}rem`);
+        root.style.setProperty('--tab-size', `${tabSize}rem`);
         subheader.classList.toggle('is-scrolled', window.scrollY > 0);
       };
     }
@@ -553,7 +560,7 @@
 
       runSubheaderUpdate();
       window.addEventListener('scroll', runSubheaderUpdate, { passive: true });
-      window.addEventListener('resize', scheduleOverflowLayout, { passive: true });
+      window.addEventListener('resize', runSubheaderUpdate, { passive: true });
 
       if (document.fonts && document.fonts.ready) {
         document.fonts.ready.then(scheduleOverflowLayout);
@@ -573,6 +580,7 @@
     } else if (subheader) {
       updateSubheader();
       window.addEventListener('scroll', updateSubheader, { passive: true });
+      window.addEventListener('resize', updateSubheader, { passive: true });
     }
 
     const setActiveTab = (tab) => {
