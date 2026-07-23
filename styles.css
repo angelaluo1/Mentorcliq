@@ -460,6 +460,21 @@ body {
   color: #0a66c2;
 }
 
+.frequent-link-card__icon--image {
+  color: inherit;
+}
+
+.frequent-link-card__icon--purple {
+  color: #5b21b6;
+}
+
+.frequent-link-card__logo {
+  display: block;
+  height: 1.25rem;
+  width: auto;
+  object-fit: contain;
+}
+
 .frequent-link-card__label {
   white-space: nowrap;
 }
