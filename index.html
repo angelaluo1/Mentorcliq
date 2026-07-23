@@ -387,8 +387,8 @@
       }
 
       const scale = 1
-        + ((window.innerWidth - largeScreenMin) * 0.0005)
-        + (Math.max(0, window.innerHeight - 900) * 0.0002);
+        + ((window.innerWidth - largeScreenMin) * 0.00065)
+        + (Math.max(0, window.innerHeight - 900) * 0.00025);
       return Math.min(1.8, Math.max(1, scale));
     };
 
