@@ -8,7 +8,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles.css?v=2" />
+    <link rel="stylesheet" href="assistant.css?v=4" />
   </head>
   <body>
     <header class="page-header">
@@ -129,10 +130,13 @@
     </div>
 
     <main class="page-main">
-      <div class="growth-section">
-        <div class="growth-section__header">
-          <span class="growth-section__bullet" aria-hidden="true"></span>
-          Growth Resources
+      <div class="growth-section growth-section--with-tour">
+        <div class="growth-section__top-row">
+          <div class="growth-section__header">
+            <span class="growth-section__bullet" aria-hidden="true"></span>
+            Growth Resources
+          </div>
+          <button type="button" class="page-tour-button" id="beginTourButton">Begin Tour</button>
         </div>
         <div class="growth-section__subtitle">Recommended</div>
       </div>
@@ -170,6 +174,12 @@
         </div>
       </a>
     </div>
+
+      <section class="nav-assistant-section" aria-label="Ask Atlas">
+        <div id="nav-assistant-root"></div>
+      </section>
+      <script src="assistant.js?v=3" defer></script>
+
       <div class="events-communities-section">
             <div class="growth-section events-communities-section__events-header">
               <div class="growth-section__header">
@@ -442,8 +452,8 @@
 
     if (subheader) {
       const maxScroll = 180;
-      const maxWidth = 110;
-      const minWidth = 56;
+      const maxWidth = window.innerWidth <= 639 ? 72 : 110;
+      const minWidth = window.innerWidth <= 639 ? 48 : 56;
       const maxFont = 0.8;
       const minFont = 0.75;
       const maxTitleFont = 1.25;
@@ -560,6 +570,7 @@
 
     const cardsContainer = document.querySelector('.cards');
     const cards = cardsContainer ? Array.from(cardsContainer.querySelectorAll('.card')) : [];
+    const prefersFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
     const getCardFlexGrow = (index, hoveredIndex) => {
       if (index === hoveredIndex) {
@@ -602,7 +613,7 @@
       });
     };
 
-    if (cardsContainer && cards.length) {
+    if (cardsContainer && cards.length && prefersFinePointer && window.innerWidth > 1023) {
       cardsContainer.addEventListener('mousemove', (event) => {
         const hoveredCard = event.target.closest('.card');
         if (!hoveredCard) {
@@ -623,7 +634,7 @@
 
     const communityCardsContainer = document.querySelector('.community-cards');
 
-    if (communityCardsContainer) {
+    if (communityCardsContainer && prefersFinePointer && window.innerWidth > 1023) {
       const communityCards = Array.from(communityCardsContainer.querySelectorAll('.community-card'));
 
       const resetCommunityCards = () => {
